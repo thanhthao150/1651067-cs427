@@ -31,6 +31,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float hurtForce = 10f;
     
     private bool isFalling = false;
+    private AudioSource footstep;
     public bool isHurting = false;
     
     //
@@ -43,7 +44,12 @@ public class CharacterController2D : MonoBehaviour
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-	public BoolEvent OnCrouchEvent;
+    public void Start()
+    {
+        footstep = GetComponent<AudioSource>();    
+    }
+
+    public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
 	private void Awake()
@@ -74,12 +80,22 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Enemy")
+        frog frog = other.gameObject.GetComponent<frog>();
+        Slug slug = other.gameObject.GetComponent<Slug>();
+        if (other.gameObject.tag == "Enemy")
         {
             if (isFalling)
             {
-                Destroy(other.gameObject);
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                if (other.gameObject.name == "frog-idle")
+                {
+                    frog.Tremble();
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                }
+                if (other.gameObject.name == "slug")
+                {
+                    slug.Tremble();
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                }
             }
             else
             {
@@ -100,7 +116,10 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    
+    private void Footstep()
+    {
+        footstep.Play();
+    }
 
     /*private void FixedUpdate()
 	{

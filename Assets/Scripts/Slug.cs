@@ -7,6 +7,12 @@ public class Slug : MonoBehaviour
     public float speed;
     private bool movingLeft = true;
     public Transform groundDetection;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -27,5 +33,14 @@ public class Slug : MonoBehaviour
                 movingLeft = true;
             }
         }
+    }
+    public void Tremble()
+    {
+        animator.SetTrigger("Death");
+    }
+
+    private void Death()
+    {
+        Destroy(this.gameObject);
     }
 }
