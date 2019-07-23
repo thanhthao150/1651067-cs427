@@ -1,6 +1,6 @@
 # midterm-cs427
 Student code: 1651067
-Name: Trần Thanh Thảo
+Name: Trần Thanh Thảo \n
 Brief Intro: Game is about killing enemies (jumping on their head), fighting boss, save the wife
 Applications:
 Accented letters:
