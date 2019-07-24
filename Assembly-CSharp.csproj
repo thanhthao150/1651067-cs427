@@ -64,11 +64,13 @@
   <ItemGroup>
     <Compile Include="Assets\2D Free Platformer Char\Scripts\AnimDemo.cs" />
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\frog.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Slug.cs" />
+    <Compile Include="Assets\Sounds\Zero Rare\Retro Sound Effects\Demo\Demo.cs" />
     <None Include="Assets\2D Free Platformer Char\2D Free Wolf\Atlas\Wolf.atlas.txt" />
-    <None Include="Assets\explosionsoundslite\readme.txt" />
+    <None Include="Assets\Sounds\explosionsoundslite\readme.txt" />
     <None Include="Assets\2D Free Platformer Char\2D Free Wolf\Spine\Spine 3.7.94\Wolf.atlas.txt" />
     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">

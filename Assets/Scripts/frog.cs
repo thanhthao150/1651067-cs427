@@ -10,6 +10,7 @@ public class frog : MonoBehaviour
     [SerializeField] private float jumpLength = 10f;
     [SerializeField] private float jumpHeight = 15f;
     [SerializeField] private Transform m_GroundCheck; // Put the prefab of the ground here
+    private AudioSource audio;
     public LayerMask groundLayer; // Insert the layer here.
     private Collider2D coll;
     private Rigidbody2D rb;
@@ -25,6 +26,7 @@ public class frog : MonoBehaviour
         coll = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -105,6 +107,7 @@ public class frog : MonoBehaviour
 
     public void Tremble()
     {
+        audio.Play();
         animator.SetTrigger("Death");
     }
 

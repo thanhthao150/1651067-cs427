@@ -23,17 +23,16 @@ public class CharacterController2D : MonoBehaviour
 
     // My edit
 
-    [SerializeField] private int cherries = 0;
-    [SerializeField] private Text cherryText;
+    private int cherries = 0;
+    private int gems = 0;
+    private bool isFalling = false;
+    public bool isHurting = false;
 
-    [SerializeField] private int gems = 0;
+    [SerializeField] private Text cherryText;    
     [SerializeField] private Text gemText;
     [SerializeField] private float hurtForce = 10f;
-    
-    private bool isFalling = false;
-    private AudioSource footstep;
-    public bool isHurting = false;
-    
+    [SerializeField] private AudioSource footstep;
+    [SerializeField] private AudioSource item;        
     //
 
     [Header("Events")]
@@ -46,7 +45,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Start()
     {
-        footstep = GetComponent<AudioSource>();    
+       
     }
 
     public BoolEvent OnCrouchEvent;
@@ -67,11 +66,13 @@ public class CharacterController2D : MonoBehaviour
     {
         if(collision.tag == "Cherry")
         {
+            item.Play();
             Destroy(collision.gameObject);
             cherries++;
             cherryText.text = cherries.ToString();
         }else if (collision.tag == "Gem")
         {
+            item.Play();
             Destroy(collision.gameObject);
             gems++;
             gemText.text = gems.ToString();
@@ -87,12 +88,12 @@ public class CharacterController2D : MonoBehaviour
             if (isFalling)
             {
                 if (other.gameObject.name == "frog-idle")
-                {
+                {                    
                     frog.Tremble();
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 }
                 if (other.gameObject.name == "slug")
-                {
+                {                    
                     slug.Tremble();
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 }
@@ -276,4 +277,14 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+    public int getCherries()
+    {
+        return cherries;
+    }
+    public int getGems()
+    {
+        return gems;
+    }
+
 }

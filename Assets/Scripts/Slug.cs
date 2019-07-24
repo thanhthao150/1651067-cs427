@@ -8,9 +8,11 @@ public class Slug : MonoBehaviour
     private bool movingLeft = true;
     public Transform groundDetection;
     private Animator animator;
+    private AudioSource audio;
 
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -36,6 +38,7 @@ public class Slug : MonoBehaviour
     }
     public void Tremble()
     {
+        audio.Play();
         animator.SetTrigger("Death");
     }
 
